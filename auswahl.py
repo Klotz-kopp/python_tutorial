@@ -1,5 +1,5 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
-from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner
+from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner, kinoticket
 import os
 
 def clear_screen():
@@ -14,7 +14,7 @@ def menu(name, dusie):
         try:
             # Versuche, die Eingabe in eine ganze Zahl umzuwandeln
             wahl = int(input(
-                f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte wähle eines aus:\n1.) für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet.\n2.) für eine Wahrheitsprüfung von hardcodierten variablen\n3.) für eine empfehlung welche Verkehrsmittel du nutzen möchtest oder\n4.) für einen Währungsrechner von Euro in Thailändische Baht\n99.) um das Programm zu beenden\nbitte wähle jetzt aus den oben genannten Nummern dein Programm."))
+                f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte wähle eines aus:\n1.) für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet.\n2.) für eine Wahrheitsprüfung von hardcodierten variablen\n3.) für eine empfehlung welche Verkehrsmittel du nutzen möchtest oder\n4.) für einen Währungsrechner von Euro in Thailändische Baht\n5.) Für unser Kinoticket verkauf\n99.) um das Programm zu beenden\nbitte wähle jetzt aus den oben genannten Nummern dein Programm."))
 
             # Verarbeite die Eingabe basierend auf der Auswahl
             if wahl == 1:
@@ -29,6 +29,9 @@ def menu(name, dusie):
             elif wahl == 4:
                 clear_screen()
                 waehrungsrechner(name, dusie)
+            elif wahl == 5:
+                clear_screen()
+                kinoticket(name, dusie)
             elif wahl == 99:
                 print("Das Programm wird beendet.")
                 exit()  # Beende die Schleife und somit das Programm

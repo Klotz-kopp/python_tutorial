@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
 
+
 def fahrpreis_berechnen(name, dusie):
     from auswahl import menu
     print(f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
@@ -71,3 +72,54 @@ def verkehrsmittel(name,dusie):
     elif strecke > 20:
         print(f"Deine {strecke} km lange Strecke solltest du mit den Öfis oder dem Auto zurück legen.")
     menu(name,dusie)
+
+def kinoticket(name, dusie):
+    from auswahl import menu
+
+    # Ticketpreise für jede Kategorie
+    kind = 5.00
+    erwachsen = 10.00
+    senior = 7.50
+
+    # Eingabe des Alters
+    try:
+        alter = int(input(f"Hallo {name},\nwir bieten in unserem Kino drei Preiskategorien an.\n1.) Kind\n2.) Erwachsene\n3.) Senioren\nBitte gib das Alter der Kinobesucher an: "))
+    except ValueError:
+        print("Bitte gib ein gültiges Alter ein.")
+        return
+
+    # Zuweisung der Preiskategorie basierend auf dem Alter
+    if alter < 18:
+        kategorie = "kind"
+    elif 18 <= alter < 65:
+        kategorie = "erwachsen"
+    else:
+        kategorie = "senior"
+
+    # Eingabe der Ticketanzahl
+    try:
+        menge = int(input(f"Wie viele Tickets der Kategorie {kategorie} möchtest du erwerben?"))
+        if menge <= 0:
+            print("Die Anzahl der Tickets muss größer als 0 sein.")
+            return
+    except ValueError:
+        print("Bitte gib eine gültige Anzahl an Tickets ein.")
+        return
+
+    # Berechnung des Preises basierend auf der Kategorie
+    if kategorie == "kind":
+        preis = menge * kind
+    elif kategorie == "erwachsen":
+        preis = menge * erwachsen
+    elif kategorie == "senior":
+        preis = menge * senior
+
+    # Ausgabe der Rechnung
+    if dusie == 'du':
+        print(f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten dich {preis:.2f}€. Bitte an Schalter 2 bezahlen.\nVielen Dank für deinen Besuch in unserem Kino.")
+    else:
+        print(f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten Sie {preis:.2f}€. Bitte zahlen Sie an Schalter 3.\nWir danken Ihnen für Ihren Besuch in unserem Kino.")
+
+    # Zurück zum Menü
+    menu(name, dusie)
+
