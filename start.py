@@ -3,11 +3,15 @@ def start_program():
     name = input("Hallo,\nwie ist dein Name? ")
     print(f"Hallo {name},\n")
 
-    dusie = input("Soll ich 'du' oder 'Sie' sagen? ")
+    # Gültigkeitsprüfung für 'dusie'
+    while True:
+        dusie = input("Soll ich 'du' oder 'Sie' sagen? ").strip()
+        if dusie.lower() in ["du", "sie"]:
+            break  # Gültige Eingabe -> Schleife verlassen
+        print("Bitte gib nur 'du' oder 'Sie' ein.")
 
     return name, dusie
-    # Berechnung des Fahrpreises aufrufen
-    #fahrpreis_berechnen(name, dusie)
+
 
 
 # Starte das Programm

@@ -123,3 +123,74 @@ def kinoticket(name, dusie):
     # Zurück zum Menü
     menu(name, dusie)
 
+def einkaufszettel(name, dusie):
+    from auswahl import menu
+    einkaufszettel = []
+    print(f"Hallo {name},\nlass uns einen Einkaufszettel schreiben.\nAktuell ist dein Einkaufszettel leer.")
+
+    while True:
+        auswahl = input("Möchtest du etwas hinzufügen, entfernen, ansehen oder beenden? ").strip().lower()
+
+        if auswahl == 'hinzufügen':
+            item = input("Was möchtest du hinzufügen? ").strip()
+            einkaufszettel.append(item)
+            print(f"{item} wurde hinzugefügt.")
+
+        elif auswahl == 'entfernen':
+            item = input("Was möchtest du entfernen? ").strip()
+            if item in einkaufszettel:
+                einkaufszettel.remove(item)
+                print(f"{item} wurde entfernt.")
+            else:
+                print(f"{item} ist nicht auf dem Einkaufszettel.")
+
+        elif auswahl == 'ansehen':
+            if not einkaufszettel:
+                print("Dein Einkaufszettel ist noch leer.")
+            else:
+                print("Aktueller Einkaufszettel:")
+                for index, item in enumerate(einkaufszettel, start=1):
+                    print(f"{index}. {item}")
+
+        elif auswahl == 'beenden':
+            print("Auf Wiedersehen!")
+            break
+
+        else:
+            print("Ungültige Auswahl. Bitte wähle 'hinzufügen', 'entfernen', 'ansehen' oder 'beenden'.")
+
+    # Zurück zum Menü
+    menu(name, dusie)
+
+def kinoticket2 (name, dusie):
+    from auswahl import menu
+
+    class Ticket:
+        def __init__(self, kategorie, alter_start, alter_ende, preis):
+            self.kategorie = kategorie
+            self.alter_start = alter_start
+            self.alter_ende = alter_ende
+            self.preis = preis
+
+    Kind = Ticket('Kind', 0, 17, 5)
+    Erwachsener = Ticket('Erwachsener', 18, 64, 10)
+    Senior = Ticket ('Senior', 65,120,7.5)
+    anzahl = int(input(f"Hallo {name},\nwilkommen an unserem Kinoticket Verkaufsautomaten.\nWieviele Personen möchten gerne ins Kino?"))
+    i = 0
+    gesamtpreis = 0
+    while i < anzahl:
+        alter = int(input(f"Wie alt ist Person Nummer {i+1}?"))
+        if Kind.alter_start <= alter <= Kind.alter_ende:
+            gesamtpreis += Kind.preis
+        elif Erwachsener.alter_start <= alter <= Erwachsener.alter_ende:
+            gesamtpreis += Erwachsener.preis
+        elif Senior.alter_start <= alter <= Senior.alter_ende:
+            gesamtpreis += Senior.preis
+        else:
+            gesamtpreis += 0
+            print("Freiticket!")
+            i += 1
+    print (f"Der Kinobesuch kostet eure {anzahl} köpfige Besuchergruppe: {gesamtpreis} €\nWir wünschen euch viel Spaß.")
+
+    # Zurück zum Menü
+    menu(name, dusie)
