@@ -1,4 +1,7 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
+from auswahl import clear_screen
+
+
 def menu_neu(name, dusie):
     class Menue:
         def __init__(self, auswahl, programm, beschreibung, variablen='name,dusie'):
@@ -15,7 +18,8 @@ def menu_neu(name, dusie):
         Menue(4, waehrungsrechner, 'für einen Währungsrechner von Euro in Thailändische Baht'),
         Menue(5, kinoticket2, 'für unseren neuen Kinoticket Verkaufsautomaten'),
         Menue(6, einkaufszettel, 'um einen Einkaufszettel zu erstellen'),
-        Menue(7, kinoticket, 'für unseren alten Kinoticket Automaten')]
+        Menue(7, kinoticket, 'für unseren alten Kinoticket Automaten'),
+        Menue(99, exit)]
 
     if dusie == "du":
         print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte wähle eines aus:")
@@ -23,6 +27,18 @@ def menu_neu(name, dusie):
         print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte wählen Sie eines aus:")
     for eintrag in optionen:
         print(f"{eintrag.auswahl}.){eintrag.beschreibung}")
-    option = input("Welches Programm möchtest du nutzen?")
+    try:
+        option = int(input("Welches Programm möchtest du nutzen?"))
+        for eintrag in optionen:
+                if eintrag.auswahl == option:
+                    clear_screen()
+                    eintrag.programm(eintrag.variablen)
+                    break
+                else:
+                    print("Ungültige Auswahl, bitte erneut versuchen.")
+                menu_neu(name, dusie)
+    except ValueError:
+        print("Bitte eine Zahl eingeben!")
+        menu_neu(name, dusie)
 
 menu_neu("simon", "du")

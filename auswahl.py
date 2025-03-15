@@ -54,19 +54,50 @@ def menu(name, dusie):
 
 def menu_neu(name, dusie):
     class Menue:
-        def __init__(self, auswahl, programm, variablen="name,dusie"):
+        def __init__(self, auswahl, programm, beschreibung, variablen=('name', 'dusie')):
             self.auswahl = auswahl
             self.programm = programm  # Speichert nur die Referenz zur Funktion
-            self.variablen = variablen
+            self.beschreibung = beschreibung
+            self.variablen = variablen  # Tuple mit Variablennamen
 
     # Menüoptionen als Liste speichern
     optionen = [
-        Menue(1, fahrpreis_berechnen),
-        Menue(2, bools),
-        Menue(3, verkehrsmittel),
-        Menue(4, waehrungsrechner),
-        Menue(5, kinoticket2),
-        Menue(6, einkaufszettel),
-        Menue(7, kinoticket)]
-    #while true:
+        Menue(1, fahrpreis_berechnen, 'für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet'),
+        Menue(2, bools, 'für die Wahrheitsprüfung einer hardcodierten Variable'),
+        Menue(3, verkehrsmittel, 'für eine Empfehlung welches Verkehrsmittel genutzt werden sollte'),
+        Menue(4, waehrungsrechner, 'für einen Währungsrechner von Euro in Thailändische Baht'),
+        Menue(5, kinoticket2, 'für unseren neuen Kinoticket Verkaufsautomaten'),
+        Menue(6, einkaufszettel, 'um einen Einkaufszettel zu erstellen'),
+        Menue(7, kinoticket, 'für unseren alten Kinoticket Automaten'),
+        Menue(99, exit, 'um das Programm zu beenden')]
+
+    # Begrüßung
+    print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
+
+    # Menüoptionen ausgeben
+    for eintrag in optionen:
+        print(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
+
+    try:
+        option = int(input("Welches Programm möchtest du nutzen? "))
+        gefunden = False  # Variable, um zu prüfen, ob eine gültige Option gewählt wurde
+
+        for eintrag in optionen:
+            if eintrag.auswahl == option:
+                gefunden = True
+                if eintrag.programm == exit:
+                    print("Das Programm wird beendet.")
+                    exit()
+                else:
+                    clear_screen()
+                    eintrag.programm(name, dusie)  # Korrekte Variablen übergeben
+                break  # Richtiges Programm gefunden → Schleife beenden
+
+        if not gefunden:  # Falls keine passende Option gefunden wurde
+            print("Ungültige Auswahl, bitte erneut versuchen.")
+            menu_neu(name, dusie)
+
+    except ValueError:
+        print("Bitte eine Zahl eingeben!")
+        menu_neu(name, dusie)
 

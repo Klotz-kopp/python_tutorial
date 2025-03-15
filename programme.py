@@ -2,7 +2,7 @@
 
 
 def fahrpreis_berechnen(name, dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
     print(f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
     while True:
         if dusie.lower() == 'sie':
@@ -27,7 +27,7 @@ def fahrpreis_berechnen(name, dusie):
             except ValueError:
                 print("Ungültige Eingabe. Bitte eine gültige Zahl für die Kilometeranzahl eingeben.")
                 continue  # Bei ungültiger Eingabe zurück zur Kilometerabfrage
-
+        nochmal = "ja"
         # Nachfrage, ob eine neue Fahrt berechnet werden soll
         if dusie.lower() == 'sie':
             nochmal = input("Möchten Sie die Kosten für eine weitere Fahrt berechnet bekommen? (ja/nein) ")
@@ -35,19 +35,19 @@ def fahrpreis_berechnen(name, dusie):
             nochmal = input("Möchtest du die Kosten für eine weitere Fahrt berechnet bekommen? (ja/nein) ")
 
         if nochmal.lower() != 'ja':
-            menu(name, dusie)
+            menu_neu(name, dusie)
             #print("Das Programm wird beendet.")
             #break # Beende das Programm, wenn die Antwort nicht 'ja' ist
 
 def waehrungsrechner(name,dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
     euro = float(input("Wie viel Euro hast du? "))
     baht = float(euro * 38.06)
     print(f"Deine {euro:.2f} € sind {baht:.2f} Baht wert.")
-    menu(name, dusie)
+    menu_neu(name, dusie)
 
 def bools(name,dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
     var1 = 40+2
     var2 = 42
     if var1 > var2:
@@ -56,10 +56,10 @@ def bools(name,dusie):
         print(f"Variable 1 ({var1}) ist kleiner als Variable 2 ({var2}).")
     elif var1 == var2:
         print(f"Beide Variablen ({var1}) sind gleich.")
-    menu(name, dusie)
+    menu_neu(name, dusie)
 
 def verkehrsmittel(name,dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
     strecke = int(input(f"Wie weit ist deine Strecke in Kilometer?"))
     if strecke < 3:
         print(f"Deine {strecke} km lange Strecke kannst du zu Fuß gehen")
@@ -71,16 +71,16 @@ def verkehrsmittel(name,dusie):
         print("Schnapp dir dein Handtuch und halt den Daumen raus.")
     elif strecke > 20:
         print(f"Deine {strecke} km lange Strecke solltest du mit den Öfis oder dem Auto zurück legen.")
-    menu(name,dusie)
+    menu_neu(name, dusie)
 
 def kinoticket(name, dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
 
     # Ticketpreise für jede Kategorie
     kind = 5.00
     erwachsen = 10.00
     senior = 7.50
-
+    preis = 0
     # Eingabe des Alters
     try:
         alter = int(input(f"Hallo {name},\nwir bieten in unserem Kino drei Preiskategorien an.\n1.) Kind\n2.) Erwachsene\n3.) Senioren\nBitte gib das Alter der Kinobesucher an: "))
@@ -121,10 +121,10 @@ def kinoticket(name, dusie):
         print(f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten Sie {preis:.2f}€. Bitte zahlen Sie an Schalter 3.\nWir danken Ihnen für Ihren Besuch in unserem Kino.")
 
     # Zurück zum Menü
-    menu(name, dusie)
+    menu_neu(name, dusie)
 
 def einkaufszettel(name, dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
     einkaufszettel = []
     print(f"Hallo {name},\nlass uns einen Einkaufszettel schreiben.\nAktuell ist dein Einkaufszettel leer.")
 
@@ -160,10 +160,10 @@ def einkaufszettel(name, dusie):
             print("Ungültige Auswahl. Bitte wähle 'hinzufügen', 'entfernen', 'ansehen' oder 'beenden'.")
 
     # Zurück zum Menü
-    menu(name, dusie)
+    menu_neu(name, dusie)
 
 def kinoticket2 (name, dusie):
-    from auswahl import menu
+    from auswahl import menu_neu
 
     class Ticket:
         def __init__(self, kategorie, alter_start, alter_ende, preis):
@@ -172,25 +172,25 @@ def kinoticket2 (name, dusie):
             self.alter_ende = alter_ende
             self.preis = preis
 
-    Kind = Ticket('Kind', 0, 17, 5)
-    Erwachsener = Ticket('Erwachsener', 18, 64, 10)
-    Senior = Ticket ('Senior', 65,120,7.5)
-    anzahl = int(input(f"Hallo {name},\nwilkommen an unserem Kinoticket Verkaufsautomaten.\nWieviele Personen möchten gerne ins Kino?"))
+    kind = Ticket('Kind', 0, 17, 5)
+    erwachsener = Ticket('Erwachsener', 18, 64, 10)
+    senior = Ticket ('Senior', 65,120,7.5)
+    anzahl = int(input(f"Hallo {name},\nWillkommen an unserem Kinoticket Verkaufsautomaten.\nWie viele Personen möchten gerne ins Kino?"))
     i = 0
     gesamtpreis = 0
     while i < anzahl:
         alter = int(input(f"Wie alt ist Person Nummer {i+1}?"))
-        if Kind.alter_start <= alter <= Kind.alter_ende:
-            gesamtpreis += Kind.preis
-        elif Erwachsener.alter_start <= alter <= Erwachsener.alter_ende:
-            gesamtpreis += Erwachsener.preis
-        elif Senior.alter_start <= alter <= Senior.alter_ende:
-            gesamtpreis += Senior.preis
+        if kind.alter_start <= alter <= kind.alter_ende:
+            gesamtpreis += kind.preis
+        elif erwachsener.alter_start <= alter <= erwachsener.alter_ende:
+            gesamtpreis += erwachsener.preis
+        elif senior.alter_start <= alter <= senior.alter_ende:
+            gesamtpreis += senior.preis
         else:
             gesamtpreis += 0
             print("Freiticket!")
-            i += 1
-    print (f"Der Kinobesuch kostet eure {anzahl} köpfige Besuchergruppe: {gesamtpreis} €\nWir wünschen euch viel Spaß.")
+        i += 1
+    print (f"Der Kinobesuch kostet eure {anzahl} köpfige Besuchergruppe: {gesamtpreis:.2f} €\nWir wünschen euch viel Spaß.")
 
     # Zurück zum Menü
-    menu(name, dusie)
+    menu_neu(name, dusie)
