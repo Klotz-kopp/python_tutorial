@@ -63,7 +63,7 @@ def menu_neu(name, dusie):
     # Menüoptionen als Liste speichern
     optionen = [
         Menue(1, fahrpreis_berechnen, 'für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet'),
-        Menue(2, bools, 'für die Wahrheitsprüfung einer hardcodierten Variable'),
+        Menue(2, bools, 'für die Wahrheitsprüfung einer hard codierte Variable'),
         Menue(3, verkehrsmittel, 'für eine Empfehlung welches Verkehrsmittel genutzt werden sollte'),
         Menue(4, waehrungsrechner, 'für einen Währungsrechner von Euro in Thailändische Baht'),
         Menue(5, kinoticket2, 'für unseren neuen Kinoticket Verkaufsautomaten'),
