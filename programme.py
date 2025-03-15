@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
-
+import requests
+import xml.etree.ElementTree as ET
 
 def fahrpreis_berechnen(name, dusie):
     from auswahl import menu_neu
@@ -39,12 +40,51 @@ def fahrpreis_berechnen(name, dusie):
             #print("Das Programm wird beendet.")
             #break # Beende das Programm, wenn die Antwort nicht 'ja' ist
 
-def waehrungsrechner(name,dusie):
+
+def waehrungsrechner(name, dusie):
     from auswahl import menu_neu
-    euro = float(input("Wie viel Euro hast du? "))
-    baht = float(euro * 38.06)
-    print(f"Deine {euro:.2f} € sind {baht:.2f} Baht wert.")
+
+    # URL der EZB für die aktuellen Wechselkurse
+    url = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+
+    try:
+        # Herunterladen der XML-Daten
+        response = requests.get(url)
+        response.raise_for_status()  # Überprüfen auf HTTP-Fehler
+
+        # Parsen der XML-Daten
+        tree = ET.ElementTree(ET.fromstring(response.content))
+        root = tree.getroot()
+
+        # Namensraum der XML-Datei
+        namespace = {'ns': 'http://www.ecb.int/vocabulary/2002-08-01/eurofxref'}
+
+        # Suchen des Wechselkurses für den thailändischen Baht (THB)
+        baht_kurs = None
+        for cube in root.findall('.//ns:Cube/ns:Cube/ns:Cube', namespace):
+            if cube.get('currency') == 'THB':
+                baht_kurs = float(cube.get('rate'))
+                break
+
+        if baht_kurs is None:
+            print("Der Wechselkurs für den thailändischen Baht konnte nicht gefunden werden.")
+            return
+
+        # Benutzerabfrage für den Euro-Betrag
+        euro = float(input("Wie viel Euro möchten Sie umrechnen? "))
+        baht = euro * baht_kurs
+        print(f"Ihre {euro:.2f} € sind {baht:.2f} Baht wert (Wechselkurs: 1 € = {baht_kurs:.2f} THB).")
+
+    except requests.RequestException as e:
+        print(f"Fehler beim Abrufen der Wechselkurse: {e}")
+    except ET.ParseError:
+        print("Fehler beim Verarbeiten der XML-Daten.")
+    except ValueError:
+        print("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.")
+
+    # Rückkehr zum Hauptmenü
     menu_neu(name, dusie)
+
 
 def bools(name,dusie):
     from auswahl import menu_neu

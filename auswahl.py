@@ -100,4 +100,3 @@ def menu_neu(name, dusie):
     except ValueError:
         print("Bitte eine Zahl eingeben!")
         menu_neu(name, dusie)
-
