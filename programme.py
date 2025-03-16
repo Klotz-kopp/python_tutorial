@@ -240,6 +240,7 @@ def weihnachtsbaum(name, dusie):
 
     print(f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
     grösse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
+    grösse += 1
     if name[-1] == 's':
         print(f"Hier ist {name}' Weihnachtsbaum:")
     else:
@@ -251,7 +252,7 @@ def weihnachtsbaum(name, dusie):
         print(y * " " + x * "*")
     y = len(range(1, grösse)) -1
     print(y * " " + "*")
-    if input("Möchtest du einen weiteren Weihnachtsbaum? (ja/nein") == "ja":
+    if input("Möchtest du einen weiteren Weihnachtsbaum? (ja/nein)") == "ja":
         weihnachtsbaum(name, dusie)
     else:
         menu_neu(name, dusie)
