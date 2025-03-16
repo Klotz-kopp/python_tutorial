@@ -2,20 +2,25 @@
 #from auswahl import clear_screen
 
 
-def weihnachtsbaum(name, dusie):
-    #import menu from auswahl
-    print(f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
-    grösse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
-    if name[-1] == 's':
-        print(f"Hier ist {name}' Weihnachtsbaum:")
-    else:
-        print(f"Hier ist {name}'s Weihnachtsbaum:")
+def tiere_raten(name, dusie):
+    #from auswahl import menu_neu
+    tier = input("Bitte nenne ein Tier: ").capitalize()
+    match tier:
+        case "Hund" | "Katze" | "Goldfisch":
+            print(f"{tier} ist ein Haustier.")
+        case "Fliege" | "Biene" | "Wespe":
+            print(f"{tier} ist ein Fliegevieh.")
+        case "Reh" | "Hirsch" | "Wildschwein":
+            print(f"{tier} ist ein Wildtier.")
+        case "Kuh" | "Schwein" | "Schaf":
+            print(f"{tier} ist ein Nutztier.")
+        case "Berta":
+            print(f"{tier} ist der süßeste Hunde den von wo gibt!")
+        case "Mücke" | "Schabe" | "Maulwurf":
+            print(f"Ich fragte nach einem Tier\n{tier} ist ein Untier (vgl. Kraut und Unkraut)")
+        case _ if tier == name:
+            print("Das ist mein süßer Schatz")
+        case _:
+            print(f"{tier} kenne ich leider nicht, ich bin ja auch nur ein dummer Computer.")
 
-    for i in range(1, grösse):
-        x = 2 * i - 1
-        y = len(range(1, grösse)) - i
-        print(y * " " + x * "*")
-    y = len(range(1, grösse)) -1
-    print(y * " " + "*")
-
-weihnachtsbaum("Simon", "du")
+tiere_raten("Simon", "du")
