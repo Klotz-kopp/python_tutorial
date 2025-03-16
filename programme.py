@@ -3,6 +3,7 @@ import requests
 import xml.etree.ElementTree as ET
 
 def fahrpreis_berechnen(name, dusie):
+    # beschreibung: für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet
     from auswahl import menu_neu
     print(f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
     while True:
@@ -42,6 +43,7 @@ def fahrpreis_berechnen(name, dusie):
 
 
 def waehrungsrechner(name, dusie):
+    # beschreibung: für einen Währungsrechner von Euro in Thailändische Baht
     from auswahl import menu_neu
 
     # URL der EZB für die aktuellen Wechselkurse
@@ -87,6 +89,7 @@ def waehrungsrechner(name, dusie):
 
 
 def bools(name,dusie):
+    # beschreibung: für die Wahrheitsprüfung einer hard codierte Variable
     from auswahl import menu_neu
     var1 = 40+2
     var2 = 42
@@ -98,7 +101,9 @@ def bools(name,dusie):
         print(f"Beide Variablen ({var1}) sind gleich.")
     menu_neu(name, dusie)
 
+
 def verkehrsmittel(name,dusie):
+    # beschreibung: für eine Empfehlung welches Verkehrsmittel genutzt werden sollte
     from auswahl import menu_neu
     strecke = int(input(f"Wie weit ist deine Strecke in Kilometer?"))
     if strecke < 3:
@@ -113,7 +118,9 @@ def verkehrsmittel(name,dusie):
         print(f"Deine {strecke} km lange Strecke solltest du mit den Öfis oder dem Auto zurück legen.")
     menu_neu(name, dusie)
 
+
 def kinoticket(name, dusie):
+    # beschreibung: für unseren alten Kinoticket Automaten
     from auswahl import menu_neu
 
     # Ticketpreise für jede Kategorie
@@ -163,7 +170,9 @@ def kinoticket(name, dusie):
     # Zurück zum Menü
     menu_neu(name, dusie)
 
+
 def einkaufszettel(name, dusie):
+    # beschreibung: um einen Einkaufszettel zu erstellen
     from auswahl import menu_neu
     einkaufszettel = []
     print(f"Hallo {name},\nlass uns einen Einkaufszettel schreiben.\nAktuell ist dein Einkaufszettel leer.")
@@ -202,7 +211,9 @@ def einkaufszettel(name, dusie):
     # Zurück zum Menü
     menu_neu(name, dusie)
 
+
 def kinoticket2 (name, dusie):
+    # beschreibung: für unseren neuen Kinoticket Verkaufsautomaten
     from auswahl import menu_neu
 
     class Ticket:
@@ -235,7 +246,9 @@ def kinoticket2 (name, dusie):
     # Zurück zum Menü
     menu_neu(name, dusie)
 
+
 def weihnachtsbaum(name, dusie):
+    # beschreibung: um einen schönen Weihnachtsbaum zu bekommen
     from auswahl import menu_neu
 
     print(f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
@@ -256,3 +269,28 @@ def weihnachtsbaum(name, dusie):
         weihnachtsbaum(name, dusie)
     else:
         menu_neu(name, dusie)
+
+
+def tiere_raten(name, dusie):
+    # beschreibung: ein Tierkategoriesierer
+    from auswahl import menu_neu
+    tier = input("Bitte nenne ein Tier: ").capitalize()
+    match tier:
+        case "Hund" | "Katze" | "Goldfisch":
+            print(f"{tier} ist ein Haustier.")
+        case "Fliege" | "Biene" | "Wespe":
+            print(f"{tier} ist ein Fliegevieh.")
+        case "Reh" | "Hirsch" | "Wildschwein":
+            print(f"{tier} ist ein Wildtier.")
+        case "Kuh" | "Schwein" | "Schaf":
+            print(f"{tier} ist ein Nutztier.")
+        case "Berta":
+            print(f"{tier} ist der süßeste Hunde den von wo gibt!")
+        case "Mücke" | "Schabe" | "Maulwurf":
+            print(f"Ich fragte nach einem Tier\n{tier} ist ein Untier (vgl. Kraut und Unkraut)")
+        case _ if tier == name:
+            print("Das ist mein süßer Schatz")
+        case _:
+            print(f"{tier} kenne ich leider nicht, ich bin ja auch nur ein dummer Computer.")
+
+    menu_neu(name, dusie)

@@ -1,8 +1,10 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
 from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner, kinoticket, einkaufszettel, \
-    kinoticket2, weihnachtsbaum
-import os
+    kinoticket2
 
+import os
+import inspect
+import programme
 
 def clear_screen():
     # Überprüfen, ob das Betriebssystem Windows oder Unix ist
@@ -55,23 +57,32 @@ def menu(name, dusie):
 
 def menu_neu(name, dusie):
     class Menue:
-        def __init__(self, auswahl, programm, beschreibung, variablen=('name', 'dusie')):
+        def __init__(self, auswahl, programm, beschreibung):
             self.auswahl = auswahl
-            self.programm = programm  # Speichert nur die Referenz zur Funktion
+            self.programm = programm
             self.beschreibung = beschreibung
-            self.variablen = variablen  # Tuple mit Variablennamen
 
-    # Menüoptionen als Liste speichern
-    optionen = [
-        Menue(1, fahrpreis_berechnen, 'für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet'),
-        Menue(2, bools, 'für die Wahrheitsprüfung einer hard codierte Variable'),
-        Menue(3, verkehrsmittel, 'für eine Empfehlung welches Verkehrsmittel genutzt werden sollte'),
-        Menue(4, waehrungsrechner, 'für einen Währungsrechner von Euro in Thailändische Baht'),
-        Menue(5, kinoticket2, 'für unseren neuen Kinoticket Verkaufsautomaten'),
-        Menue(6, einkaufszettel, 'um einen Einkaufszettel zu erstellen'),
-        Menue(7, kinoticket, 'für unseren alten Kinoticket Automaten'),
-        Menue(8, weihnachtsbaum, 'um einen schönen Weihnachtsbaum zu bekommen'),
-        Menue(99, exit, 'um das Programm zu beenden')]
+    # Dynamisch alle Funktionen aus programme.py mit Beschreibungen laden
+    optionen = []
+    for index, (func_name, func) in enumerate(inspect.getmembers(programme, inspect.isfunction), start=1):
+        try:
+            # Öffne programme.py und lese die relevante Zeile
+            with open("programme.py", "r", encoding="utf-8") as file:
+                lines = file.readlines()
+                beschreibung = lines[func.__code__.co_firstlineno].strip()  # Die Zeile VOR der Funktionsdefinition
+
+                # Prüfen, ob die Zeile mit '#beschreibung:' beginnt
+                if beschreibung.startswith("# beschreibung: "):
+                    beschreibung = beschreibung.replace("# beschreibung: ", "")
+                else:
+                    beschreibung = "Keine Beschreibung verfügbar"
+        except Exception as e:
+            beschreibung = f"Fehler beim Lesen: {e}"
+
+        optionen.append(Menue(index, func, beschreibung))
+
+    # Option zum Beenden hinzufügen
+    optionen.append(Menue(99, exit, "um das Programm zu beenden"))
 
     # Begrüßung
     print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
@@ -80,25 +91,20 @@ def menu_neu(name, dusie):
     for eintrag in optionen:
         print(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
 
+    # Benutzereingabe abfragen
     try:
         option = int(input("Welches Programm möchtest du nutzen? "))
-        gefunden = False  # Variable, um zu prüfen, ob eine gültige Option gewählt wurde
-
         for eintrag in optionen:
             if eintrag.auswahl == option:
-                gefunden = True
                 if eintrag.programm == exit:
                     print("Das Programm wird beendet.")
                     exit()
                 else:
                     clear_screen()
-                    eintrag.programm(name, dusie)  # Korrekte Variablen übergeben
-                break  # Richtiges Programm gefunden → Schleife beenden
-
-        if not gefunden:  # Falls keine passende Option gefunden wurde
-            print("Ungültige Auswahl, bitte erneut versuchen.")
-            menu_neu(name, dusie)
-
+                    eintrag.programm(name, dusie)
+                return
+        print("Ungültige Auswahl, bitte erneut versuchen.")
+        menu_neu(name, dusie)
     except ValueError:
         print("Bitte eine Zahl eingeben!")
         menu_neu(name, dusie)
