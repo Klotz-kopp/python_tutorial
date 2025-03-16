@@ -1,44 +1,21 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
-from auswahl import clear_screen
+#from auswahl import clear_screen
 
 
-def menu_neu(name, dusie):
-    class Menue:
-        def __init__(self, auswahl, programm, beschreibung, variablen='name,dusie'):
-            self.auswahl = auswahl
-            self.programm = programm  # Speichert nur die Referenz zur Funktion
-            self.beschreibung = beschreibung
-            self.variablen = variablen
-
-    # Menüoptionen als Liste speichern
-    optionen = [
-        Menue(1, fahrpreis_berechnen, 'für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet'),
-        Menue(2, bools, 'für die Wahrheitsprüfung einer hardcodierten variable'),
-        Menue(3, verkehrsmittel, 'für eine Empfehlung welches Verkehrsmittel genutzt werden sollte'),
-        Menue(4, waehrungsrechner, 'für einen Währungsrechner von Euro in Thailändische Baht'),
-        Menue(5, kinoticket2, 'für unseren neuen Kinoticket Verkaufsautomaten'),
-        Menue(6, einkaufszettel, 'um einen Einkaufszettel zu erstellen'),
-        Menue(7, kinoticket, 'für unseren alten Kinoticket Automaten'),
-        Menue(99, exit)]
-
-    if dusie == "du":
-        print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte wähle eines aus:")
+def weihnachtsbaum(name, dusie):
+    #import menu from auswahl
+    print(f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
+    grösse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
+    if name[-1] == 's':
+        print(f"Hier ist {name}' Weihnachtsbaum:")
     else:
-        print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte wählen Sie eines aus:")
-    for eintrag in optionen:
-        print(f"{eintrag.auswahl}.){eintrag.beschreibung}")
-    try:
-        option = int(input("Welches Programm möchtest du nutzen?"))
-        for eintrag in optionen:
-                if eintrag.auswahl == option:
-                    clear_screen()
-                    eintrag.programm(eintrag.variablen)
-                    break
-                else:
-                    print("Ungültige Auswahl, bitte erneut versuchen.")
-                menu_neu(name, dusie)
-    except ValueError:
-        print("Bitte eine Zahl eingeben!")
-        menu_neu(name, dusie)
+        print(f"Hier ist {name}'s Weihnachtsbaum:")
 
-menu_neu("simon", "du")
+    for i in range(1, grösse):
+        x = 2 * i - 1
+        y = len(range(1, grösse)) - i
+        print(y * " " + x * "*")
+    y = len(range(1, grösse)) -1
+    print(y * " " + "*")
+
+weihnachtsbaum("Simon", "du")

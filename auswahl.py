@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
-from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner, kinoticket, einkaufszettel, kinoticket2
+from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner, kinoticket, einkaufszettel, \
+    kinoticket2, weihnachtsbaum
 import os
 
 
@@ -69,6 +70,7 @@ def menu_neu(name, dusie):
         Menue(5, kinoticket2, 'für unseren neuen Kinoticket Verkaufsautomaten'),
         Menue(6, einkaufszettel, 'um einen Einkaufszettel zu erstellen'),
         Menue(7, kinoticket, 'für unseren alten Kinoticket Automaten'),
+        Menue(8, weihnachtsbaum, 'um einen schönen Weihnachtsbaum zu bekommen'),
         Menue(99, exit, 'um das Programm zu beenden')]
 
     # Begrüßung
