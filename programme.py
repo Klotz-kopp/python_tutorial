@@ -1,4 +1,14 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
+
+""" Diese Datei enthält alle Mini Programme welche im Rahmen des / der Youtube Tutorials erstellt wurden.
+Konventionen:   - alle Programme sind in einer eigenen Funktion
+                - alle Programme werden mit der Übergabe der Variablen 'name' & 'dusie' gestartet, auch wenn nicht, benutzt
+                - alle Programme haben in der ersten Zeile ein Kommentar welcher beginnt mit '# beschreibung: ' gefolgt von einer
+                  Beschreibung des Programms welches später den entsprechenden Menüpunkt bildet, dies ist nötig damit
+                  das Menü automatisch erstellt werden kann
+                - alle Programme starten mit 'from auswahl import menu_neu' und enden mit 'menu_neu(name, dusie)' damit
+                  beim Beenden das Menü erneut aufgerufen wird."""
+
 import requests
 import xml.etree.ElementTree as ET
 

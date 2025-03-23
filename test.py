@@ -1,6 +1,8 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
 #from auswahl import clear_screen
 
+""" Diese Datei wird zum experementieren genutzt, in der Regel werden neue Programme / Funktionen hier geschrieben und getestet
+ bevor Sie in die programme.py übernommen werden"""
 
 def tiere_raten(name, dusie):
     #from auswahl import menu_neu
@@ -24,3 +26,13 @@ def tiere_raten(name, dusie):
             print(f"{tier} kenne ich leider nicht, ich bin ja auch nur ein dummer Computer.")
 
 tiere_raten("Simon", "du")
+
+""" Template für neue Programme:
+
+def programmname(name, dusie):
+    # beschreibung: TEXT
+    from auswahl import menu_neu
+
+    menu_neu(name, dusie)
+
+"""

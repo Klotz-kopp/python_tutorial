@@ -1,4 +1,7 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
+
+""" Diese Datei erzeugt das Hauptmenü des Programms """
+
 from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner, kinoticket, einkaufszettel, \
     kinoticket2
 
@@ -7,6 +10,7 @@ import inspect
 import programme
 
 def clear_screen():
+    """ Betriebssystemabhänge Methode die Konsole zu löschen """
     # Überprüfen, ob das Betriebssystem Windows oder Unix ist
     if os.name == 'nt':  # nt ist Windows
         os.system('cls')
@@ -15,6 +19,8 @@ def clear_screen():
 
 
 def menu(name, dusie):
+    """ Das 'alte' oder zuerst erstellte Menü, es musste manuell jedes neue Programm eingepflegt werden,
+     wurde im laufe der Zeit durch menu_neu abgelöst"""
     while True:  # Solange der Benutzer keine gültige Eingabe macht, wiederhole den Loop
         try:
             # Versuche, die Eingabe in eine ganze Zahl umzuwandeln
@@ -56,6 +62,9 @@ def menu(name, dusie):
 
 
 def menu_neu(name, dusie):
+    """ Das neue, automatisierte Menü. Statt wie in menu alles von Hand zu schreiben und zu erweitern,
+     wird dieses Menü automatisch erzeugt, indem die programme.py durchsucht wird, die nötigen Informationen von dort
+     gescrappt werden und dann hier automatisch zum Menü zusammengesetzt werden"""
     class Menue:
         def __init__(self, auswahl, programm, beschreibung):
             self.auswahl = auswahl

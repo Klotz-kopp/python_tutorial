@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
 def start_program():
+    #Aufgabe der Funktion ist das setzen der 2 Variablen 'Name' und 'dusie' für die weitere verwendung im Programmablauf
     name = input("Hallo,\nwie ist dein Name? ")
     print(f"Hallo {name},\n")
 
@@ -14,5 +15,3 @@ def start_program():
 
 
 
-# Starte das Programm
-#start_program()
