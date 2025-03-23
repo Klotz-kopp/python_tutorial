@@ -9,6 +9,8 @@ import os
 import inspect
 import programme
 
+menu_angezeigt = False
+
 def clear_screen():
     """ Betriebssystemabhänge Methode die Konsole zu löschen """
     # Überprüfen, ob das Betriebssystem Windows oder Unix ist
@@ -62,29 +64,41 @@ def menu(name, dusie):
 
 
 def menu_neu(name, dusie):
-    """ Das neue, automatisierte Menü. Statt wie in menu alles von Hand zu schreiben und zu erweitern,
-     wird dieses Menü automatisch erzeugt, indem die programme.py durchsucht wird, die nötigen Informationen von dort
-     gescrappt werden und dann hier automatisch zum Menü zusammengesetzt werden"""
+    """Automatisiertes Menü: Sucht automatisch Programme und Beschreibungen aus programme.py"""
+
+    global menu_angezeigt  # Auf die globale Variable zugreifen
+
+    if menu_angezeigt:
+        # Menü bereits angezeigt, einfach ausgeben
+        print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
+        for eintrag in optionen:
+            print(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
+        return
+
     class Menue:
         def __init__(self, auswahl, programm, beschreibung):
             self.auswahl = auswahl
             self.programm = programm
             self.beschreibung = beschreibung
 
-    # Dynamisch alle Funktionen aus programme.py mit Beschreibungen laden
     optionen = []
+
     for index, (func_name, func) in enumerate(inspect.getmembers(programme, inspect.isfunction), start=1):
         try:
-            # Öffne programme.py und lese die relevante Zeile
+            beschreibung = "Keine Beschreibung verfügbar"
             with open("programme.py", "r", encoding="utf-8") as file:
-                lines = file.readlines()
-                beschreibung = lines[func.__code__.co_firstlineno].strip()  # Die Zeile VOR der Funktionsdefinition
+                for line_number, line in enumerate(file, start=1):
+                    if line_number == func.__code__.co_firstlineno:  # Funktionsdefinition gefunden
+                        # Nächste Zeile explizit einlesen
+                        next_line = next(file, "").strip()
 
-                # Prüfen, ob die Zeile mit '#beschreibung:' beginnt
-                if beschreibung.startswith("# beschreibung: "):
-                    beschreibung = beschreibung.replace("# beschreibung: ", "")
-                else:
-                    beschreibung = "Keine Beschreibung verfügbar"
+                        if next_line.lstrip().startswith("#beschreibung: ") or next_line.lstrip().startswith(
+                                "# beschreibung: "):
+                            beschreibung = next_line.lstrip().replace("#beschreibung: ", "").replace("# beschreibung: ",
+                                                                                                     "").strip()
+
+                        break  # Nach dem Lesen der nächsten Zeile aufhören
+
         except Exception as e:
             beschreibung = f"Fehler beim Lesen: {e}"
 
@@ -96,11 +110,9 @@ def menu_neu(name, dusie):
     # Begrüßung
     print(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
 
-    # Menüoptionen ausgeben
     for eintrag in optionen:
         print(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
 
-    # Benutzereingabe abfragen
     try:
         option = int(input("Welches Programm möchtest du nutzen? "))
         for eintrag in optionen:
@@ -117,3 +129,6 @@ def menu_neu(name, dusie):
     except ValueError:
         print("Bitte eine Zahl eingeben!")
         menu_neu(name, dusie)
+
+    # Menü als angezeigt markieren
+    menu_angezeigt = True
