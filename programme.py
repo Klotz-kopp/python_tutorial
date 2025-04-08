@@ -7,7 +7,8 @@ Konventionen:   - alle Programme sind in einer eigenen Funktion
                   Beschreibung des Programms welches später den entsprechenden Menüpunkt bildet, dies ist nötig damit
                   das Menü automatisch erstellt werden kann
                 - alle Programme starten mit 'from auswahl import menu_neu' und enden mit 'menu_neu(name, dusie)' damit
-                  beim Beenden das Menü erneut aufgerufen wird."""
+                  beim Beenden das Menü erneut aufgerufen wird.
+                Live Template progtemp"""
 
 import requests
 import xml.etree.ElementTree as ET
@@ -304,3 +305,46 @@ def tiere_raten(name, dusie):
             print(f"{tier} kenne ich leider nicht, ich bin ja auch nur ein dummer Computer.")
 
     menu_neu(name, dusie)
+    
+    
+def zählen(name, dusie):
+    # beschreibung: Ich kann dir was vorzählen, glaube ich
+    from auswahl import menu_neu
+
+    nochmal = True  # Startwert für Schleife
+    while nochmal:
+        counter = 1  # Zähler zurücksetzen
+
+        # Eingabe der Obergrenze
+        limit = int(input("Wie weit soll ich zählen? "))
+
+        # Zählschleife
+        while counter <= limit:
+            match counter:
+                case 0:
+                    print("Null")
+                case 1:
+                    print("Eins")
+                case 2:
+                    print("Zwei")
+                case 3:
+                    print("Drei")
+                case 4:
+                    print("Vier")
+                case 5:
+                    print("Fünf")
+                case 42:
+                    print("Dies ist die Antwort auf die Frage nach dem Leben, dem Univerum und dem ganzen Rest.")
+                case _:
+                    print("Ich glaube ich habe mich verzählt!")
+            counter += 1
+
+        print("Das wars...")
+
+        # Nachfrage für Wiederholung
+        nochmal = input("Nochmal zählen? (j/n): ").lower() == "j"
+
+    # Rückkehr zum Menü
+    menu_neu(name, dusie)
+
+
