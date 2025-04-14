@@ -3,7 +3,9 @@
 
 """ Diese Datei wird zum experementieren genutzt, in der Regel werden neue Programme / Funktionen hier geschrieben und getestet
  bevor Sie in die programme.py übernommen werden"""
-
+from dataclasses import replace
+import re
+from funktionen import printf
 def schon_wieder_einkaufsliste(name, dusie):
 
     einkaufsliste = []
@@ -17,23 +19,23 @@ def schon_wieder_einkaufsliste(name, dusie):
 
         #ansehen
         elif aktion == 'ansehen':
-            print(f"Dies ist deine aktuelle {einkaufsliste}.")
+            printf(f"Dies ist deine aktuelle {einkaufsliste}.")
 
         #entfernen
         elif aktion == 'entfernen':
             artikel = input("Welchen Artikel möchtest du entfernen?")
             if artikel in einkaufsliste:
                 einkaufsliste.remove(artikel)
-                print(f"{artikel} von der Einkaufsliste entfernt.")
+                printf(f"{artikel} von der Einkaufsliste entfernt.")
             else:
-                print(f"Der Artikel {artikel} ist nicht auf deiner Einkaufsliste.")
+                printf(f"Der Artikel {artikel} ist nicht auf deiner Einkaufsliste.")
 
         #beenden
         elif aktion == 'beenden':
-            print("Tschüss!")
+            printf("Tschüss!")
             break
         else:
-            print(f"Dein Eingabe {aktion} ist leider nicht korrekt.\nBitte nur hinzufügen, entfernen, ansehen oder beenden wählen.")
+            printf(f"Dein Eingabe {aktion} ist leider nicht korrekt.\nBitte nur hinzufügen, entfernen, ansehen oder beenden wählen.")
 
 def zahlen_raten(name, dusie):
     # beschreibung: Das Zahlenrate Spiel
@@ -45,25 +47,24 @@ def zahlen_raten(name, dusie):
     if dusie == 'du':
         regeln_ansehen = input(f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
         if regeln_ansehen == 'j':
-            print("Alles klar, die Regeln sind sehr einfach. Ich denke mir eine Zahl aus, und du musst versuchen diese Zahl zu erraten.\nKeine Angst, ich nehme nur Zahlen zwischen 1 und 100.\nUnd ich bin nett, immer wenn deine Antwort nicht richtig ist, gebe ich dir einen Hinweis, ob meine Zahl größer oder kleiner ist. Legen wir los...")
+            printf("Alles klar, die Regeln sind sehr einfach. Ich denke mir eine Zahl aus, und du musst versuchen diese Zahl zu erraten.\nKeine Angst, ich nehme nur Zahlen zwischen 1 und 100.\nUnd ich bin nett, immer wenn deine Antwort nicht richtig ist, gebe ich dir einen Hinweis, ob meine Zahl größer oder kleiner ist. Legen wir los...")
         else:
-            print("Ok, du weißt schon wie es geht?! Legen wir also los.")
+            printf("Ok, du weißt schon wie es geht?! Legen wir also los.")
         while tipp != zahl:
             tipp = int(input("Ich habe mir eine Zahl ausgedacht, welche ist es wohl?"))
             counter+=1
             if tipp > zahl:
-                print(f"Deine Antwort {tipp} ist größer als meine Zahl.")
+                printf(f"Deine Antwort {tipp} ist größer als meine Zahl.")
             else:
-                print(f"Deine Antwort {tipp} ist kleiner als meine Zahl.")
-        print(f"Richtig!\nDein Tipp: {tipp} ist meine Zahl: {zahl}!\nHerzlichen Glückwunsch!")
+                printf(f"Deine Antwort {tipp} ist kleiner als meine Zahl.")
+        printf(f"Richtig!\nDein Tipp: {tipp} ist meine Zahl: {zahl}!\nHerzlichen Glückwunsch!")
         if counter <5:
-            print(f"Du hast nur {counter} Versuche benötigt.")
+            printf(f"Du hast nur {counter} Versuche benötigt.")
         else:
-            print(f"Du hast {counter} Versuche benötigt.")
+            printf(f"Du hast {counter} Versuche benötigt.")
     else:
-        print("Mit Snops die sich Siezen lassen, spiele ich nicht!")
+        printf("Mit Snops die sich Siezen lassen, spiele ich nicht!")
     menu_neu(name, dusie)
-
 
 zahlen_raten("Simon", "du")
 
