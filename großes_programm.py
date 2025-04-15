@@ -1,5 +1,6 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
 from funktionen import printf
+from farben import Farben
 
 #Das erste Spiel, Tic Tac Toe
 
@@ -13,10 +14,18 @@ def erstelle_brett():
 
 
 def drucke_brett(brett):
-    # Spielbrett ausgeben
     for zeile in brett:
-        printf("|".join(zeile))
-        print("------")
+        gefaerbt = []
+        for feld in zeile:
+            if feld == 'X':
+                gefaerbt.append(Farben['Grün'] + 'X' + Farben['Reset'])
+            elif feld == 'O':
+                gefaerbt.append(Farben['Magenta'] + 'O' + Farben['Reset'])
+            else:
+                gefaerbt.append(feld)
+        printf("|".join(gefaerbt))
+        printf("------")
+
 
 def mache_zug(brett, aktueller_spieler, zeile, spalte):
     #Zug machen
@@ -28,7 +37,7 @@ def mache_zug(brett, aktueller_spieler, zeile, spalte):
 
 
 def pruefe_gewonnen(brett, aktueller_spieler):
-    # Überprüfe ob die Siegbedingung erfüllt ist
+    # Überprüfe, ob die Sieg bedingung erfüllt ist
     for zeile in range(3):
         if brett[zeile][0] == brett[zeile][1] == brett[zeile][2] == aktueller_spieler:
             return True
@@ -58,8 +67,27 @@ def spiele_tic_tac_toe(name, dusie):
 
     while True:
         drucke_brett(brett)
-        zeile = int(input(f"Spieler {aktueller_spieler}, wähle deine Zeile (0-2)"))
-        spalte = int(input(f"Spieler {aktueller_spieler}, wähle deine Spalte (0-2)"))
+        #Frage die Zeilen Menschentauglich ab, und wandle dann in Index um
+        try:
+            zeile = int(input(f"Spieler {aktueller_spieler}, wähle deine Zeile (1-3): "))
+            if zeile < 1 or zeile > 3:
+                raise ValueError("Zeile außerhalb des gültigen Bereichs")
+            zeile -= 1
+        except (ValueError, TypeError):
+            printf(f"Hallo {aktueller_spieler},\ndeine Eingabe war nicht gültig")
+            continue
+
+        #Frage die Spalte Menschentauglich ab, und wandle dann in Index um
+        spalte = input(f"Spieler {aktueller_spieler}, wähle deine Spalte (A-C)").upper()
+        if spalte == 'A':
+            spalte = 0
+        elif spalte == 'B':
+            spalte = 1
+        elif spalte == 'C':
+            spalte = 2
+        else:
+            printf(f"Die Spalte {spalte} gibt es nicht, bitte nur A, B oder C wählen")
+            continue
 
         if not mache_zug(brett, aktueller_spieler, zeile, spalte):
             printf("Ungültiger Zug, bitte versuche es erneut!")
@@ -76,4 +104,5 @@ def spiele_tic_tac_toe(name, dusie):
 
     menu_neu(name, dusie)
 
+spiele_tic_tac_toe('Simon','du')
 
