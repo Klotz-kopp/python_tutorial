@@ -10,14 +10,18 @@ Konventionen:   - alle Programme sind in einer eigenen Funktion
                   beim Beenden das Menü erneut aufgerufen wird.
                 Live Template progtemp"""
 
-import requests
 import xml.etree.ElementTree as ET
+
+import requests
+
 from funktionen import printf
+
 
 def fahrpreis_berechnen(name, dusie):
     # beschreibung: für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet
     from auswahl import menu_neu
-    printf(f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
+    printf(
+        f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
     while True:
         if dusie.lower() == 'sie':
             km = input("Wie viele Kilometer möchten Sie fahren? ")
@@ -49,9 +53,8 @@ def fahrpreis_berechnen(name, dusie):
             nochmal = input("Möchtest du die Kosten für eine weitere Fahrt berechnet bekommen? (ja/nein) ")
 
         if nochmal.lower() != 'ja':
-            menu_neu(name, dusie)
-            #printf("Das Programm wird beendet.")
-            #break # Beende das Programm, wenn die Antwort nicht 'ja' ist
+            menu_neu(name,
+                     dusie)  # printf("Das Programm wird beendet.") # break # Beende das Programm, wenn die Antwort nicht 'ja' ist
 
 
 def waehrungsrechner(name, dusie):
@@ -100,10 +103,10 @@ def waehrungsrechner(name, dusie):
     menu_neu(name, dusie)
 
 
-def bools(name,dusie):
+def bools(name, dusie):
     # beschreibung: für die Wahrheitsprüfung einer hard codierte Variable
     from auswahl import menu_neu
-    var1 = 40+2
+    var1 = 40 + 2
     var2 = 42
     if var1 > var2:
         printf(f"Variable 1 ({var1}) ist größer als Variable 2 ({var2})")
@@ -114,7 +117,7 @@ def bools(name,dusie):
     menu_neu(name, dusie)
 
 
-def verkehrsmittel(name,dusie):
+def verkehrsmittel(name, dusie):
     # beschreibung: für eine Empfehlung welches Verkehrsmittel genutzt werden sollte
     from auswahl import menu_neu
     strecke = int(input(f"Wie weit ist deine Strecke in Kilometer?"))
@@ -123,8 +126,9 @@ def verkehrsmittel(name,dusie):
     elif 3 < strecke < 20:
         printf(f"Deine {strecke} km lange Strecke kannst du mit dem Fahrrad zurück legen.")
     elif strecke == 3:
-        printf(f"Deine {strecke} km lange Strecke kannst du sowohl mit dem Fahrrad als auch zu Fuß zurücklegen,\nganz nach belieben.")
-    elif strecke ==42:
+        printf(
+            f"Deine {strecke} km lange Strecke kannst du sowohl mit dem Fahrrad als auch zu Fuß zurücklegen,\nganz nach belieben.")
+    elif strecke == 42:
         printf("Schnapp dir dein Handtuch und halt den Daumen raus.")
     elif strecke > 20:
         printf(f"Deine {strecke} km lange Strecke solltest du mit den Öfis oder dem Auto zurück legen.")
@@ -142,7 +146,8 @@ def kinoticket(name, dusie):
     preis = 0
     # Eingabe des Alters
     try:
-        alter = int(input(f"Hallo {name},\nwir bieten in unserem Kino drei Preiskategorien an.\n1.) Kind\n2.) Erwachsene\n3.) Senioren\nBitte gib das Alter der Kinobesucher an: "))
+        alter = int(input(
+            f"Hallo {name},\nwir bieten in unserem Kino drei Preiskategorien an.\n1.) Kind\n2.) Erwachsene\n3.) Senioren\nBitte gib das Alter der Kinobesucher an: "))
     except ValueError:
         printf("Bitte gib ein gültiges Alter ein.")
         return
@@ -175,9 +180,11 @@ def kinoticket(name, dusie):
 
     # Ausgabe der Rechnung
     if dusie == 'du':
-        printf(f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten dich {preis:.2f}€. Bitte an Schalter 2 bezahlen.\nVielen Dank für deinen Besuch in unserem Kino.")
+        printf(
+            f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten dich {preis:.2f}€. Bitte an Schalter 2 bezahlen.\nVielen Dank für deinen Besuch in unserem Kino.")
     else:
-        printf(f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten Sie {preis:.2f}€. Bitte zahlen Sie an Schalter 3.\nWir danken Ihnen für Ihren Besuch in unserem Kino.")
+        printf(
+            f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten Sie {preis:.2f}€. Bitte zahlen Sie an Schalter 3.\nWir danken Ihnen für Ihren Besuch in unserem Kino.")
 
     # Zurück zum Menü
     menu_neu(name, dusie)
@@ -224,7 +231,7 @@ def einkaufszettel(name, dusie):
     menu_neu(name, dusie)
 
 
-def kinoticket2 (name, dusie):
+def kinoticket2(name, dusie):
     # beschreibung: für unseren neuen Kinoticket Verkaufsautomaten
     from auswahl import menu_neu
 
@@ -237,12 +244,13 @@ def kinoticket2 (name, dusie):
 
     kind = Ticket('Kind', 0, 17, 5)
     erwachsener = Ticket('Erwachsener', 18, 64, 10)
-    senior = Ticket ('Senior', 65,120,7.5)
-    anzahl = int(input(f"Hallo {name},\nWillkommen an unserem Kinoticket Verkaufsautomaten.\nWie viele Personen möchten gerne ins Kino?"))
+    senior = Ticket('Senior', 65, 120, 7.5)
+    anzahl = int(input(
+        f"Hallo {name},\nWillkommen an unserem Kinoticket Verkaufsautomaten.\nWie viele Personen möchten gerne ins Kino?"))
     i = 0
     gesamtpreis = 0
     while i < anzahl:
-        alter = int(input(f"Wie alt ist Person Nummer {i+1}?"))
+        alter = int(input(f"Wie alt ist Person Nummer {i + 1}?"))
         if kind.alter_start <= alter <= kind.alter_ende:
             gesamtpreis += kind.preis
         elif erwachsener.alter_start <= alter <= erwachsener.alter_ende:
@@ -253,7 +261,8 @@ def kinoticket2 (name, dusie):
             gesamtpreis += 0
             printf("Freiticket!")
         i += 1
-    printf (f"Der Kinobesuch kostet eure {anzahl} köpfige Besuchergruppe: {gesamtpreis:.2f} €\nWir wünschen euch viel Spaß.")
+    printf(
+        f"Der Kinobesuch kostet eure {anzahl} köpfige Besuchergruppe: {gesamtpreis:.2f} €\nWir wünschen euch viel Spaß.")
 
     # Zurück zum Menü
     menu_neu(name, dusie)
@@ -263,19 +272,20 @@ def weihnachtsbaum(name, dusie):
     # beschreibung: um einen schönen Weihnachtsbaum zu bekommen
     from auswahl import menu_neu
 
-    printf(f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
-    grösse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
-    grösse += 1
+    printf(
+        f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
+    groesse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
+    groesse += 1
     if name[-1] == 's':
         printf(f"Hier ist {name}' Weihnachtsbaum:")
     else:
         printf(f"Hier ist {name}'s Weihnachtsbaum:")
 
-    for i in range(1, grösse):
+    for i in range(1, groesse):
         x = 2 * i - 1
-        y = len(range(1, grösse)) - i
+        y = len(range(1, groesse)) - i
         printf(y * " " + x * "*")
-    y = len(range(1, grösse)) -1
+    y = len(range(1, groesse)) - 1
     printf(y * " " + "*")
     if input("Möchtest du einen weiteren Weihnachtsbaum? (ja/nein)") == "ja":
         weihnachtsbaum(name, dusie)
@@ -306,9 +316,9 @@ def tiere_raten(name, dusie):
             printf(f"{tier} kenne ich leider nicht, ich bin ja auch nur ein dummer Computer.")
 
     menu_neu(name, dusie)
-    
-    
-def zählen(name, dusie):
+
+
+def zaehlen(name, dusie):
     # beschreibung: Ich kann dir was vorzählen, glaube ich
     from auswahl import menu_neu
 
@@ -335,7 +345,7 @@ def zählen(name, dusie):
                 case 5:
                     printf("Fünf")
                 case 42:
-                    printf("Dies ist die Antwort auf die Frage nach dem Leben, dem Univerum und dem ganzen Rest.")
+                    printf("Dies ist die Antwort auf die Frage nach dem Leben, dem Universum und dem ganzen Rest.")
                 case _:
                     printf("Ich glaube ich habe mich verzählt!")
             counter += 1
@@ -357,23 +367,33 @@ def zahlen_raten(name, dusie):
     tipp = 0
     counter = 0
     if dusie == 'du':
-        regeln_ansehen = input(f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
+        regeln_ansehen = input(
+            f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
         if regeln_ansehen == 'j':
-            printf("Alles klar, die Regeln sind sehr einfach. Ich denke mir eine Zahl aus, und du musst versuchen diese Zahl zu erraten.\nKeine Angst, ich nehme nur Zahlen zwischen 1 und 100.\nUnd ich bin nett, immer wenn deine Antwort nicht richtig ist, gebe ich dir einen Hinweis, ob meine Zahl größer oder kleiner ist. Legen wir los...")
+            printf(
+                "Alles klar, die Regeln sind sehr einfach. Ich denke mir eine Zahl aus, und du musst versuchen diese Zahl zu erraten.\nKeine Angst, ich nehme nur Zahlen zwischen 1 und 100.\nUnd ich bin nett, immer wenn deine Antwort nicht richtig ist, gebe ich dir einen Hinweis, ob meine Zahl größer oder kleiner ist. Legen wir los...")
         else:
             printf("Ok, du weißt schon wie es geht?! Legen wir also los.")
         while tipp != zahl:
             tipp = int(input("Ich habe mir eine Zahl ausgedacht, welche ist es wohl?"))
-            counter+=1
+            counter += 1
             if tipp > zahl:
                 printf(f"Deine Antwort {tipp} ist größer als meine Zahl.")
             else:
                 printf(f"Deine Antwort {tipp} ist kleiner als meine Zahl.")
         printf(f"Richtig!\nDein Tipp: {tipp} ist meine Zahl: {zahl}!\nHerzlichen Glückwunsch!")
-        if counter <5:
+        if counter < 5:
             printf(f"Du hast nur {counter} Versuche benötigt.")
         else:
             printf(f"Du hast {counter} Versuche benötigt.")
     else:
         printf("Mit Snops die sich Siezen lassen, spiele ich nicht!")
+    menu_neu(name, dusie)
+
+
+def tic_tac_toe(name, dusie):
+    # beschreibung: Lust auf eine Runde Tic Tac Toe?
+    from auswahl import menu_neu
+    from großes_programm import spiele_tic_tac_toe
+    spiele_tic_tac_toe(name,dusie)
     menu_neu(name, dusie)
