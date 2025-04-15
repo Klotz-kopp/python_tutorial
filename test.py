@@ -45,7 +45,7 @@ def zahlen_raten(name, dusie):
     tipp = 0
     counter = 0
     if dusie == 'du':
-        regeln_ansehen = input(f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
+        regeln_ansehen = input(f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
         if regeln_ansehen == 'j':
             printf("Alles klar, die Regeln sind sehr einfach. Ich denke mir eine Zahl aus, und du musst versuchen diese Zahl zu erraten.\nKeine Angst, ich nehme nur Zahlen zwischen 1 und 100.\nUnd ich bin nett, immer wenn deine Antwort nicht richtig ist, gebe ich dir einen Hinweis, ob meine Zahl größer oder kleiner ist. Legen wir los...")
         else:

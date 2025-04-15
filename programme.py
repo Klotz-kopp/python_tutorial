@@ -21,7 +21,7 @@ def fahrpreis_berechnen(name, dusie):
     # beschreibung: für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet
     from auswahl import menu_neu
     printf(
-        f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
+        f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
     while True:
         if dusie.lower() == 'sie':
             km = input("Wie viele Kilometer möchten Sie fahren? ")
@@ -147,7 +147,7 @@ def kinoticket(name, dusie):
     # Eingabe des Alters
     try:
         alter = int(input(
-            f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nwir bieten in unserem Kino drei Preiskategorien an.\n1.) Kind\n2.) Erwachsene\n3.) Senioren\nBitte gib das Alter der Kinobesucher an: "))
+            f"Hallo {name},\nwir bieten in unserem Kino drei Preiskategorien an.\n1.) Kind\n2.) Erwachsene\n3.) Senioren\nBitte gib das Alter der Kinobesucher an: "))
     except ValueError:
         printf("Bitte gib ein gültiges Alter ein.")
         return
@@ -194,7 +194,7 @@ def einkaufszettel(name, dusie):
     # beschreibung: um einen Einkaufszettel zu erstellen
     from auswahl import menu_neu
     einkaufszettel = []
-    printf(f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nlass uns einen Einkaufszettel schreiben.\nAktuell ist dein Einkaufszettel leer.")
+    printf(f"Hallo {name},\nlass uns einen Einkaufszettel schreiben.\nAktuell ist dein Einkaufszettel leer.")
 
     while True:
         auswahl = input("Möchtest du etwas hinzufügen, entfernen, ansehen oder beenden? ").strip().lower()
@@ -246,7 +246,7 @@ def kinoticket2(name, dusie):
     erwachsener = Ticket('Erwachsener', 18, 64, 10)
     senior = Ticket('Senior', 65, 120, 7.5)
     anzahl = int(input(
-        f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nWillkommen an unserem Kinoticket Verkaufsautomaten.\nWie viele Personen möchten gerne ins Kino?"))
+        f"Hallo {name},\nWillkommen an unserem Kinoticket Verkaufsautomaten.\nWie viele Personen möchten gerne ins Kino?"))
     i = 0
     gesamtpreis = 0
     while i < anzahl:
@@ -273,13 +273,13 @@ def weihnachtsbaum(name, dusie):
     from auswahl import menu_neu
 
     printf(
-        f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
+        f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
     groesse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
     groesse += 1
     if name[-1] == 's':
-        printf(f"Hier ist {Farben['Cyan'}{name}{Farben['Reset']' Weihnachtsbaum:")
+        printf(f"Hier ist {name}' Weihnachtsbaum:")
     else:
-        printf(f"Hier ist {Farben['Cyan'}{name}{Farben['Reset']'s Weihnachtsbaum:")
+        printf(f"Hier ist {name}'s Weihnachtsbaum:")
 
     for i in range(1, groesse):
         x = 2 * i - 1
@@ -368,7 +368,7 @@ def zahlen_raten(name, dusie):
     counter = 0
     if dusie == 'du':
         regeln_ansehen = input(
-            f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
+            f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
         if regeln_ansehen == 'j':
             printf(
                 "Alles klar, die Regeln sind sehr einfach. Ich denke mir eine Zahl aus, und du musst versuchen diese Zahl zu erraten.\nKeine Angst, ich nehme nur Zahlen zwischen 1 und 100.\nUnd ich bin nett, immer wenn deine Antwort nicht richtig ist, gebe ich dir einen Hinweis, ob meine Zahl größer oder kleiner ist. Legen wir los...")

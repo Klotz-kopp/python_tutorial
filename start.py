@@ -5,7 +5,8 @@ from funktionen import printf, Farben
 def start_program():
     #Aufgabe der Funktion ist das setzen der 2 Variablen 'Name' und 'dusie' für die weitere verwendung im Programmablauf
     name = input("Hallo,\nwie ist dein Name? ")
-    printf(f"Hallo {Farben['Cyan'}{name}{Farben['Reset'],\n")
+    name = f"{Farben['Cyan']}{name}{Farben['Reset']}"
+    printf(f"Hallo {name},\n")
 
     # Gültigkeitsprüfung für 'dusie'
     while True:
