@@ -1,5 +1,4 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
-
 from funktionen import printf, Farben
 
 """try:
