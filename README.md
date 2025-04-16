@@ -11,7 +11,7 @@ Des weiteren habe ich um die Konsolenausgabe ein wenig aufzuhübschen in der fun
 
 Ich weiß nicht warum, aber ich mag f-Strings, daher benutze ich diese in der Ausgbe eigentlich immer. Ich finde dies leichter zu lesen und zu schreiben.
 
-Ich gebe zu, ich könnte mehr kommentare verwenden um den Code für andere leichter nachvollziehbarer zu machen... ich arbeite an mir.
+Ich gebe zu, ich könnte mehr Kommentare verwenden um den Code für andere leichter nachvollziehbarer zu machen... ich arbeite an mir.
 Für alle Python Profis: Bitte beachten, ich lerne... dies sind meine aller ersten Zeilen Code.
 Sollte sich ein Python Neuling oder interessierter hier her verirren, Willkommen, ich hoffe diese kleine Sammlung kann euch helfen.
 
@@ -19,5 +19,7 @@ Sollte sich ein Python Neuling oder interessierter hier her verirren, Willkommen
 Und ja, ich mache mich auch etwas mit GitHub vertraut und schreibe mir selber Issues um die Funktionen zu testen.:)
 
 Viel Spaß beim durchstöbern des Codes...
+
 Gruß
+
 Klotz-kopp
