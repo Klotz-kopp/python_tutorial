@@ -15,6 +15,9 @@ Ich gebe zu, ich könnte mehr kommentare verwenden um den Code für andere leich
 Für alle Python Profis: Bitte beachten, ich lerne... dies sind meine aller ersten Zeilen Code.
 Sollte sich ein Python Neuling oder interessierter hier her verirren, Willkommen, ich hoffe diese kleine Sammlung kann euch helfen.
 
+
+Und ja, ich mache mich auch etwas mit GitHub vertraut und schreibe mir selber Issues um die Funktionen zu testen.:)
+
 Viel Spaß beim durchstöbern des Codes...
 Gruß
 Klotz-kopp
