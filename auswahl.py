@@ -22,7 +22,7 @@ def clear_screen():
 
 def menu(name, dusie):
     """ Das 'alte' oder zuerst erstellte Menü, es musste manuell jedes neue Programm eingepflegt werden,
-     wurde im laufe der Zeit durch menu_neu abgelöst"""
+     wurde im Laufe der Zeit durch menu_neu abgelöst"""
     while True:  # Solange der Benutzer keine gültige Eingabe macht, wiederhole den Loop
         try:
             # Versuche, die Eingabe in eine ganze Zahl umzuwandeln
