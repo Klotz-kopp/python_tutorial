@@ -3,7 +3,7 @@ from funktionen import printf, Farben
 
 
 def start_program():
-    #Aufgabe der Funktion ist das setzen der 2 Variablen 'Name' und 'dusie' für die weitere verwendung im Programmablauf
+    #A ufgabe der Funktion ist das setzen der 2 Variablen 'Name' und 'dusie' für die weitere verwendung im Programmablauf
     name = input("Hallo,\nwie ist dein Name? ")
     name = f"{Farben['Cyan']}{name}{Farben['Reset']}"
     printf(f"Hallo {name},\n")
@@ -16,6 +16,3 @@ def start_program():
         printf("Bitte gib nur 'du' oder 'Sie' ein.")
 
     return name, dusie
-
-
-

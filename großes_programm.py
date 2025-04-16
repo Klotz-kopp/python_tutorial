@@ -1,7 +1,8 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
 from funktionen import printf, Farben
 
-#Das erste Spiel, Tic Tac Toe
+
+# Das erste Spiel, Tic Tac Toe
 
 def erstelle_brett():
     # Spielbrett erstellen
@@ -27,7 +28,7 @@ def drucke_brett(brett):
 
 
 def mache_zug(brett, aktueller_spieler, zeile, spalte):
-    #Zug machen
+    # Zug machen
     if brett[zeile][spalte] == ' ':
         brett[zeile][spalte] = aktueller_spieler
         return True
@@ -46,8 +47,9 @@ def pruefe_gewonnen(brett, aktueller_spieler):
             return True
 
     if brett[0][0] == brett[1][1] == brett[2][2] == aktueller_spieler or \
-       brett[2][0] == brett[1][1] == brett[0][2] == aktueller_spieler:
+            brett[2][0] == brett[1][1] == brett[0][2] == aktueller_spieler:
         return True
+
 
 def pruefe_unentschieden(brett):
     # Überprüfe ob Unentschieden
@@ -56,6 +58,7 @@ def pruefe_unentschieden(brett):
             return False
         else:
             return True
+
 
 def spiele_tic_tac_toe(name, dusie):
     # beschreibung: Lust auf eine Runde Tic Tac Toe?
@@ -66,7 +69,7 @@ def spiele_tic_tac_toe(name, dusie):
 
     while True:
         drucke_brett(brett)
-        #Frage die Zeilen Menschentauglich ab, und wandle dann in Index um
+        # Frage die Zeilen Menschentauglich ab, und wandle dann in Index um
         try:
             zeile = int(input(f"Spieler {aktueller_spieler}, wähle deine Zeile (1-3): "))
             if zeile < 1 or zeile > 3:
@@ -76,7 +79,7 @@ def spiele_tic_tac_toe(name, dusie):
             printf(f"Hallo {aktueller_spieler},\ndeine Eingabe war nicht gültig")
             continue
 
-        #Frage die Spalte Menschentauglich ab, und wandle dann in Index um
+        # Frage die Spalte Menschentauglich ab, und wandle dann in Index um
         spalte = input(f"Spieler {aktueller_spieler}, wähle deine Spalte (A-C)").upper()
         if spalte == 'A':
             spalte = 0
@@ -92,7 +95,7 @@ def spiele_tic_tac_toe(name, dusie):
             printf("Ungültiger Zug, bitte versuche es erneut!")
             continue
 
-        if pruefe_gewonnen(brett,aktueller_spieler):
+        if pruefe_gewonnen(brett, aktueller_spieler):
             drucke_brett(brett)
             printf(f"Hey, du hast gewonnen, Spieler {aktueller_spieler}.")
             break
@@ -103,5 +106,5 @@ def spiele_tic_tac_toe(name, dusie):
 
     menu_neu(name, dusie)
 
-spiele_tic_tac_toe('Simon','du')
 
+spiele_tic_tac_toe('Simon', 'du')

@@ -2,14 +2,16 @@
 
 """ Diese Datei erzeugt das Hauptmenü des Programms """
 
+import inspect
+import os
+
+import programme
+from funktionen import printf
 from programme import fahrpreis_berechnen, bools, verkehrsmittel, waehrungsrechner, kinoticket, einkaufszettel, \
     kinoticket2
-from funktionen import printf, Farben
-import os
-import inspect
-import programme
 
 menu_angezeigt = False
+
 
 def clear_screen():
     """ Betriebssystemabhänge Methode die Konsole zu löschen """
@@ -50,14 +52,15 @@ def menu(name, dusie):
                 einkaufszettel(name, dusie)
             elif wahl == 7:
                 clear_screen()
-                kinoticket(name,dusie)
+                kinoticket(name, dusie)
             elif wahl == 99:
                 printf("Das Programm wird beendet.")
                 exit()  # Beende die Schleife und somit das Programm
             elif wahl == 'Kartoffel':
                 printf("Herzlichen Glückwunsch, du hast 100,-€ im Quiz des RTL Mittagsmagazins gewonnen.")
             else:
-                printf(f"Leider war deine Eingabe von {wahl} nicht gültig.\nBitte wähle eine der oben genannten Nummern aus.")
+                printf(
+                    f"Leider war deine Eingabe von {wahl} nicht gültig.\nBitte wähle eine der oben genannten Nummern aus.")
         except ValueError:
             # Wenn der Benutzer keine gültige Zahl eingibt, wird dieser Fehler abgefangen
             printf("Ungültige Eingabe! Bitte gib eine Zahl ein.")
@@ -70,7 +73,8 @@ def menu_neu(name, dusie):
 
     if menu_angezeigt:
         # Menü bereits angezeigt, einfach ausgeben
-        printf(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
+        printf(
+            f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
         for eintrag in optionen:
             printf(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
         return
@@ -108,7 +112,8 @@ def menu_neu(name, dusie):
     optionen.append(Menue(99, exit, "um das Programm zu beenden"))
 
     # Begrüßung
-    printf(f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
+    printf(
+        f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
 
     for eintrag in optionen:
         printf(f"{eintrag.auswahl}.) {eintrag.beschreibung}")

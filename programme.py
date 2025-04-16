@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 
 import requests
 
-from funktionen import printf, Farben
+from funktionen import printf
 
 
 def fahrpreis_berechnen(name, dusie):
@@ -395,5 +395,5 @@ def tic_tac_toe(name, dusie):
     # beschreibung: Lust auf eine Runde Tic Tac Toe?
     from auswahl import menu_neu
     from großes_programm import spiele_tic_tac_toe
-    spiele_tic_tac_toe(name,dusie)
+    spiele_tic_tac_toe(name, dusie)
     menu_neu(name, dusie)
