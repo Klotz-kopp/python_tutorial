@@ -16,8 +16,8 @@ logging.basicConfig(
 
 def startpunkt():
     try:
-        name, dusie = start_program()
-        menu_neu(name, dusie)
+        name, pronomen = start_program()
+        menu_neu(name, pronomen)
     except Exception as e:
         # Fehler wird ins Log geschrieben
         logging.error(f'Fehler: {e}', exc_info=True)

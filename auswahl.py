@@ -22,7 +22,7 @@ def clear_screen():
         os.system('clear')
 
 
-def menu(name, dusie):
+def menu(name, pronomen):
     """ Das 'alte' oder zuerst erstellte Menü, es musste manuell jedes neue Programm eingepflegt werden,
      wurde im Laufe der Zeit durch menu_neu abgelöst"""
     while True:  # Solange der Benutzer keine gültige Eingabe macht, wiederhole den Loop
@@ -34,25 +34,25 @@ def menu(name, dusie):
             # Verarbeite die Eingabe basierend auf der Auswahl
             if wahl == 1:
                 clear_screen()
-                fahrpreis_berechnen(name, dusie)
+                fahrpreis_berechnen(name, pronomen)
             elif wahl == 2:
                 clear_screen()
-                bools(name, dusie)
+                bools(name, pronomen)
             elif wahl == 3:
                 clear_screen()
-                verkehrsmittel(name, dusie)
+                verkehrsmittel(name, pronomen)
             elif wahl == 4:
                 clear_screen()
-                waehrungsrechner(name, dusie)
+                waehrungsrechner(name, pronomen)
             elif wahl == 5:
                 clear_screen()
-                kinoticket2(name, dusie)
+                kinoticket2(name, pronomen)
             elif wahl == 6:
                 clear_screen()
-                einkaufszettel(name, dusie)
+                einkaufszettel(name, pronomen)
             elif wahl == 7:
                 clear_screen()
-                kinoticket(name, dusie)
+                kinoticket(name, pronomen)
             elif wahl == 99:
                 printf("Das Programm wird beendet.")
                 exit()  # Beende die Schleife und somit das Programm
@@ -66,7 +66,7 @@ def menu(name, dusie):
             printf("Ungültige Eingabe! Bitte gib eine Zahl ein.")
 
 
-def menu_neu(name, dusie):
+def menu_neu(name, pronomen):
     """Automatisiertes Menü: Sucht automatisch Programme und Beschreibungen aus programme.py"""
 
     global menu_angezeigt  # Auf die globale Variable zugreifen
@@ -74,7 +74,7 @@ def menu_neu(name, dusie):
     if menu_angezeigt:
         # Menü bereits angezeigt, einfach ausgeben
         printf(
-            f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
+            f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if pronomen == 'du' else 'wählen Sie'} eines aus:")
         for eintrag in optionen:
             printf(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
         return
@@ -113,7 +113,7 @@ def menu_neu(name, dusie):
 
     # Begrüßung
     printf(
-        f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if dusie == 'du' else 'wählen Sie'} eines aus:")
+        f"Hallo {name},\nes stehen verschiedene Programme zur Verfügung, bitte {'wähle' if pronomen == 'du' else 'wählen Sie'} eines aus:")
 
     for eintrag in optionen:
         printf(f"{eintrag.auswahl}.) {eintrag.beschreibung}")
@@ -127,13 +127,13 @@ def menu_neu(name, dusie):
                     exit()
                 else:
                     clear_screen()
-                    eintrag.programm(name, dusie)
+                    eintrag.programm(name, pronomen)
                 return
         printf("Ungültige Auswahl, bitte erneut versuchen.")
-        menu_neu(name, dusie)
+        menu_neu(name, pronomen)
     except ValueError:
         printf("Bitte eine Zahl eingeben!")
-        menu_neu(name, dusie)
+        menu_neu(name, pronomen)
 
     # Menü als angezeigt markieren
     menu_angezeigt = True

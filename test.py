@@ -6,7 +6,7 @@
 from funktionen import printf
 
 
-def schon_wieder_einkaufsliste(name, dusie):
+def schon_wieder_einkaufsliste(name, pronomen):
     einkaufsliste = []
 
     while True:
@@ -38,14 +38,14 @@ def schon_wieder_einkaufsliste(name, dusie):
                 f"Dein Eingabe {aktion} ist leider nicht korrekt.\nBitte nur hinzufügen, entfernen, ansehen oder beenden wählen.")
 
 
-def zahlen_raten(name, dusie):
+def zahlen_raten(name, pronomen):
     # beschreibung: Das Zahlenrate Spiel
     from auswahl import menu_neu
     from random import randint
     zahl = randint(1, 100)
     tipp = 0
     counter = 0
-    if dusie == 'du':
+    if pronomen == 'du':
         regeln_ansehen = input(
             f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
         if regeln_ansehen == 'j':
@@ -67,17 +67,17 @@ def zahlen_raten(name, dusie):
             printf(f"Du hast {counter} Versuche benötigt.")
     else:
         printf("Mit Snops die sich Siezen lassen, spiele ich nicht!")
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
 zahlen_raten("Simon", "du")
 
 """ Template für neue Programme:
 
-def programmname(name, dusie):
+def programmname(name, pronomen):
     # beschreibung: TEXT
     from auswahl import menu_neu
 
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 """

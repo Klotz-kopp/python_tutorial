@@ -2,11 +2,11 @@
 
 """ Diese Datei enthält alle Mini Programme welche im Rahmen des / der Youtube Tutorials erstellt wurden.
 Konventionen:   - alle Programme sind in einer eigenen Funktion
-                - alle Programme werden mit der Übergabe der Variablen 'name' & 'dusie' gestartet, auch wenn nicht, benutzt
+                - alle Programme werden mit der Übergabe der Variablen 'name' & 'pronomen' gestartet, auch wenn nicht, benutzt
                 - alle Programme haben in der ersten Zeile ein Kommentar welcher beginnt mit '# beschreibung: ' gefolgt von einer
                   Beschreibung des Programms welches später den entsprechenden Menüpunkt bildet, dies ist nötig damit
                   das Menü automatisch erstellt werden kann
-                - alle Programme starten mit 'from auswahl import menu_neu' und enden mit 'menu_neu(name, dusie)' damit
+                - alle Programme starten mit 'from auswahl import menu_neu' und enden mit 'menu_neu(name, pronomen)' damit
                   beim Beenden das Menü erneut aufgerufen wird.
                 Live Template progtemp"""
 
@@ -17,15 +17,15 @@ import requests
 from funktionen import printf
 
 
-def fahrpreis_berechnen(name, dusie):
+def fahrpreis_berechnen(name, pronomen):
     # beschreibung: für den Taxameter welcher dir den Preis für eine Taxifahrt berechnet
     from auswahl import menu_neu
     printf(
         f"Hallo {name},\nherzlich willkommen beim Taxameter.\nDer Taxameter soll den voraussichtlichen Fahrpreis für eine Taxifahrt ermitteln.\nFangen wir an.")
     while True:
-        if dusie.lower() == 'sie':
+        if pronomen.lower() == 'sie':
             km = input("Wie viele Kilometer möchten Sie fahren? ")
-        elif dusie.lower() == 'du':
+        elif pronomen.lower() == 'du':
             km = input("Wie viele Kilometer möchtest du fahren? ")
         else:
             printf("Ungültige Eingabe, bitte 'du' oder 'Sie' wählen.")
@@ -47,17 +47,17 @@ def fahrpreis_berechnen(name, dusie):
                 continue  # Bei ungültiger Eingabe zurück zur Kilometerabfrage
         nochmal = "ja"
         # Nachfrage, ob eine neue Fahrt berechnet werden soll
-        if dusie.lower() == 'sie':
+        if pronomen.lower() == 'sie':
             nochmal = input("Möchten Sie die Kosten für eine weitere Fahrt berechnet bekommen? (ja/nein) ")
-        elif dusie.lower() == 'du':
+        elif pronomen.lower() == 'du':
             nochmal = input("Möchtest du die Kosten für eine weitere Fahrt berechnet bekommen? (ja/nein) ")
 
         if nochmal.lower() != 'ja':
             menu_neu(name,
-                     dusie)  # printf("Das Programm wird beendet.") # break # Beende das Programm, wenn die Antwort nicht 'ja' ist
+                     pronomen)  # printf("Das Programm wird beendet.") # break # Beende das Programm, wenn die Antwort nicht 'ja' ist
 
 
-def waehrungsrechner(name, dusie):
+def waehrungsrechner(name, pronomen):
     # beschreibung: für einen Währungsrechner von Euro in Thailändische Baht
     from auswahl import menu_neu
 
@@ -100,10 +100,10 @@ def waehrungsrechner(name, dusie):
         printf("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.")
 
     # Rückkehr zum Hauptmenü
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def bools(name, dusie):
+def bools(name, pronomen):
     # beschreibung: für die Wahrheitsprüfung einer hard codierte Variable
     from auswahl import menu_neu
     var1 = 40 + 2
@@ -114,10 +114,10 @@ def bools(name, dusie):
         printf(f"Variable 1 ({var1}) ist kleiner als Variable 2 ({var2}).")
     elif var1 == var2:
         printf(f"Beide Variablen ({var1}) sind gleich.")
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def verkehrsmittel(name, dusie):
+def verkehrsmittel(name, pronomen):
     # beschreibung: für eine Empfehlung welches Verkehrsmittel genutzt werden sollte
     from auswahl import menu_neu
     strecke = int(input(f"Wie weit ist deine Strecke in Kilometer?"))
@@ -132,10 +132,10 @@ def verkehrsmittel(name, dusie):
         printf("Schnapp dir dein Handtuch und halt den Daumen raus.")
     elif strecke > 20:
         printf(f"Deine {strecke} km lange Strecke solltest du mit den Öfis oder dem Auto zurück legen.")
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def kinoticket(name, dusie):
+def kinoticket(name, pronomen):
     # beschreibung: für unseren alten Kinoticket Automaten
     from auswahl import menu_neu
 
@@ -179,7 +179,7 @@ def kinoticket(name, dusie):
         preis = menge * senior
 
     # Ausgabe der Rechnung
-    if dusie == 'du':
+    if pronomen == 'du':
         printf(
             f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten dich {preis:.2f}€. Bitte an Schalter 2 bezahlen.\nVielen Dank für deinen Besuch in unserem Kino.")
     else:
@@ -187,10 +187,10 @@ def kinoticket(name, dusie):
             f"Die {menge} Kinotickets in der Kategorie {kategorie} kosten Sie {preis:.2f}€. Bitte zahlen Sie an Schalter 3.\nWir danken Ihnen für Ihren Besuch in unserem Kino.")
 
     # Zurück zum Menü
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def einkaufszettel(name, dusie):
+def einkaufszettel(name, pronomen):
     # beschreibung: um einen Einkaufszettel zu erstellen
     from auswahl import menu_neu
     einkaufszettel = []
@@ -228,10 +228,10 @@ def einkaufszettel(name, dusie):
             printf("Ungültige Auswahl. Bitte wähle 'hinzufügen', 'entfernen', 'ansehen' oder 'beenden'.")
 
     # Zurück zum Menü
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def kinoticket2(name, dusie):
+def kinoticket2(name, pronomen):
     # beschreibung: für unseren neuen Kinoticket Verkaufsautomaten
     from auswahl import menu_neu
 
@@ -265,15 +265,15 @@ def kinoticket2(name, dusie):
         f"Der Kinobesuch kostet eure {anzahl} köpfige Besuchergruppe: {gesamtpreis:.2f} €\nWir wünschen euch viel Spaß.")
 
     # Zurück zum Menü
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def weihnachtsbaum(name, dusie):
+def weihnachtsbaum(name, pronomen):
     # beschreibung: um einen schönen Weihnachtsbaum zu bekommen
     from auswahl import menu_neu
 
     printf(
-        f"Hallo {name},\nschön dass {dusie} hier {'bist' if dusie == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if dusie == 'du' else 'Sie'}.")
+        f"Hallo {name},\nschön dass {pronomen} hier {'bist' if pronomen == 'du' else 'sind'}\nIch habe eine Weihnachtsbaum für {'dich' if pronomen == 'du' else 'Sie'}.")
     groesse = int(input("Wie groß soll der Weihnachtsbaum werden? (1-99) "))
     groesse += 1
     if name[-1] == 's':
@@ -288,12 +288,12 @@ def weihnachtsbaum(name, dusie):
     y = len(range(1, groesse)) - 1
     printf(y * " " + "*")
     if input("Möchtest du einen weiteren Weihnachtsbaum? (ja/nein)") == "ja":
-        weihnachtsbaum(name, dusie)
+        weihnachtsbaum(name, pronomen)
     else:
-        menu_neu(name, dusie)
+        menu_neu(name, pronomen)
 
 
-def tiere_raten(name, dusie):
+def tiere_raten(name, pronomen):
     # beschreibung: ein Tierkategoriesierer
     from auswahl import menu_neu
     tier = input("Bitte nenne ein Tier: ").capitalize()
@@ -315,10 +315,10 @@ def tiere_raten(name, dusie):
         case _:
             printf(f"{tier} kenne ich leider nicht, ich bin ja auch nur ein dummer Computer.")
 
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def zaehlen(name, dusie):
+def zaehlen(name, pronomen):
     # beschreibung: Ich kann dir was vorzählen, glaube ich
     from auswahl import menu_neu
 
@@ -356,17 +356,17 @@ def zaehlen(name, dusie):
         nochmal = input("Nochmal zählen? (j/n): ").lower() == "j"
 
     # Rückkehr zum Menü
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def zahlen_raten(name, dusie):
+def zahlen_raten(name, pronomen):
     # beschreibung: Das Zahlenrate Spiel
     from auswahl import menu_neu
     from random import randint
     zahl = randint(1, 100)
     tipp = 0
     counter = 0
-    if dusie == 'du':
+    if pronomen == 'du':
         regeln_ansehen = input(
             f"Hallo {name},\nWillkommen beim Zahlen rate Spiel.\nMöchtest du die Spielregel sehen? (j/n) ")
         if regeln_ansehen == 'j':
@@ -388,12 +388,12 @@ def zahlen_raten(name, dusie):
             printf(f"Du hast {counter} Versuche benötigt.")
     else:
         printf("Mit Snops die sich Siezen lassen, spiele ich nicht!")
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
-def tic_tac_toe(name, dusie):
+def tic_tac_toe(name, pronomen):
     # beschreibung: Lust auf eine Runde Tic Tac Toe?
     from auswahl import menu_neu
     from großes_programm import spiele_tic_tac_toe
-    spiele_tic_tac_toe(name, dusie)
-    menu_neu(name, dusie)
+    spiele_tic_tac_toe(name, pronomen)
+    menu_neu(name, pronomen)

@@ -60,7 +60,7 @@ def pruefe_unentschieden(brett):
             return True
 
 
-def spiele_tic_tac_toe(name, dusie):
+def spiele_tic_tac_toe(name, pronomen):
     # beschreibung: Lust auf eine Runde Tic Tac Toe?
     from auswahl import menu_neu
 
@@ -104,7 +104,7 @@ def spiele_tic_tac_toe(name, dusie):
             printf(f"Das Spiel ist unentschieden ausgegangen")
         aktueller_spieler = 'O' if aktueller_spieler == 'X' else 'X'
 
-    menu_neu(name, dusie)
+    menu_neu(name, pronomen)
 
 
 spiele_tic_tac_toe('Simon', 'du')
