@@ -32,6 +32,10 @@ def oop():
         def fahren(self):
             printf(f"Brum Brum " * int(self.ps / 10))
 
+        def info(self):
+            printf(
+                f"Mein Auto war ein {self.marke} {self.modell} von {self.baujahr} in {self.farbe}. Er hatte {self.ps} PS neben seinen {self.tueren} Türen.")
+
     auto1 = Auto('Seat', 'Leon', '2012', 4, 'schwarz', 140)
 
     printf(
@@ -50,6 +54,15 @@ def oop():
     auto2 = Sportwagen("Cupra", "Leon", 2024, 4, 'rot', 327, 6.7)
     auto2.begruessung()
     auto2.fahren()
+
+    class Kombi(Auto):
+        def __init__(self, marke, modell, baujahr, tueren, farbe, ps, ladeflaeche):
+            super().__init__(marke, modell, baujahr, tueren, farbe, ps)
+            self.ladeflaeche = ladeflaeche
+
+    auto3 = Kombi('Volkswagen', 'Passat', 2003, 4, 'rot', 249, 'gross')
+
+    auto2.info()
 
 
 oop()
