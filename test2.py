@@ -63,6 +63,11 @@ def oop():
     auto3 = Kombi('Volkswagen', 'Passat', 2003, 4, 'rot', 249, 'gross')
 
     auto2.info()
+    auto3.info()
+    auto3.begruessung()
+    auto3.fahren()
 
 
 oop()
+import seaborn as sns
+print(sns.get_dataset_names())
