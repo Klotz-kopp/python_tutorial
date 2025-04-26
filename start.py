@@ -12,7 +12,7 @@ def start_program():
     while True:
         pronomen = input("Soll ich 'du' oder 'Sie' sagen? ").strip()
         if pronomen.lower() in ["du", "sie"]:
-            break  # Gültige Eingabe -> Schleife verlassen
+            break  # Gültige Eingabe --> Schleife verlassen
         printf("Bitte gib nur 'du' oder 'Sie' ein.")
 
     return name, pronomen
