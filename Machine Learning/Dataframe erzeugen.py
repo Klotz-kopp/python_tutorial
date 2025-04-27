@@ -1,5 +1,4 @@
 #  Copyright (c) 2025. Diese Python Skripte wurden von mir erstellt und können als Referenz von anderen genutzt und gelesen werden.
-# Hilfsdatei um dataframe und test_train split zu erstellen und zu exportieren
 
 import pandas as pd
 from funktionen import printf
@@ -31,7 +30,7 @@ def test_train_erzeuge():
 def dataframe_bauen():
     # Dataframe definieren
     start = time.time()  # Startzeitpunkt
-    df = pd.read_csv('Datasets/TUANDROMD.csv')
+    df = pd.read_csv('../Datasets/TUANDROMD.csv')
     # Null-Zeilen entfernen
     df = df.dropna()
     if datenname == 'penguins':

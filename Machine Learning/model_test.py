@@ -49,23 +49,24 @@ Modelle = [
     MLModell('MLPClassifier', lambda i: MLPClassifier(max_iter=1000 * i))
 ]
 
+datenname = 'malware_detect'
 
 def main():
     # Dictionary zum Speichern der Ergebnisse: Key = Modellname, Value = Liste der Scores
     Ergebnisse = {modell.name + '_ergebnis': [] for modell in Modelle}
-    if os.path.exists("malware_detect_df.pkl"):
-        with open("malware_detect_df.pkl", "rb") as f:
+    if os.path.exists(datenname + "_df.pkl"):
+        with open(datenname + "_df.pkl", "rb") as f:
             df = pickle.load(f)
     else:
         df = dataframe_bauen()
-        with open("malware_detect_df.pkl", "wb") as f:
+        with open(datenname + "_df.pkl", "wb") as f:
             pickle.dump(df, f)
-    if os.path.exists("malware_detect_split.pkl"):
-        with open("malware_detect_split.pkl", "rb") as f:
+    if os.path.exists(datenname + "_split.pkl"):
+        with open(datenname + "_split.pkl", "rb") as f:
             X_train, X_test, y_train, y_test = pickle.load(f)
     else:
         X_train, X_test, y_train, y_test = dataframe_praeparieren(df)
-        with open("malware_detect_split.pkl", "wb") as f:  # <- RICHTIG
+        with open(datenname + "_split.pkl", "wb") as f:  # <- RICHTIG
             pickle.dump((X_train, X_test, y_train, y_test), f)
 
     for i in range(1, 11):
@@ -98,7 +99,11 @@ def main():
 
     # Optional: nach Modell und Durchgang sortieren
     df_alle = df_alle.sort_values(by=['Modell', 'Durchgang'])
+    ordner = f"Auswertung/{datenname}/"
 
+    if not os.path.exists(ordner):
+        os.makedirs(ordner)  # Erstellt alle benötigten Unterordner
+    df_alle.to_csv("Auswertung/" + datenname + "/" + datenname + "_Modell_Ergebnisse.csv", index=False)
     # Anzeige
     print(df_alle.to_string(index=False))
 
@@ -162,7 +167,9 @@ def modell_vergleich(Ergebnisse):
     # Anzeige
     print("Hier eine Übersicht über die jeweils schnellsten Durchgänge je Modell.")
     print(df_schnell.to_string(index=False))
-
+    # Ergebnisse exportieren
+    df_beste.to_csv("Auswertung/" + datenname + "/Auswertung_Beste_Modelle_" + datenname + ".csv", index=False)
+    df_schnell.to_csv("Auswertung/" + datenname + "/" + "Auswertung_Schnellste_Modelle" + datenname + ".csv", index=False)
 
 def dataframe_bauen():
     # Dataframe definieren
